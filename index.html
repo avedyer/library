@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <title>Page Title</title>
+    <title>Library</title>
     <meta charset="UTF-8"/>
     </head>
     <body>
-        <button type="button">New Book</button>
+        <h1>
+            Your Books
+        </h1>
+        <main>
+            <button type="button">New Book</button>
+            <div id="bookshelf">
+
+            </div>
+        </main>
         <form class="newBook">
-        <label  for="title">Title</label><br>
-        <input type="text" id="title"><br>
-        <label  for="author">Author</label><br>
-        <input type="text" id="author"><br>
-        <label  for="pages">Author</label><br>
-        <input type="number" id="pages" min="0" step="1"><br>
-        <label for="read">Read?</label>
-        <input type="checkbox"><br>
-        <input type="submit" value="Submit">
+            <label  for="title">Title</label><br>
+                <input type="text" id="title"><br>
+            <label  for="author">Author</label><br>
+                <input type="text" id="author"><br>
+            <label  for="pages">Author</label><br>
+                <input type="number" id="pages" min="0" step="1"><br>
+            <label for="read">Read?</label>
+                <input type="checkbox"><br>
+            <input type="submit" value="Submit">
         </form>
     </body>
     <script src="script.js"></script>
