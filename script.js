@@ -9,11 +9,12 @@ function Book (title, author, pages, read, id) {
 }
 
 let writeID = function(){
-    let id = Math.floor(Math.random(10**16))
-    for (let book in myLibrary) {
+    let id = Math.floor(Math.random() * (2**32))
+    for (const book in myLibrary) {
         if (book.id === id)
         writeID();
     }
+    return id;
 }
 
 function addBookToLibrary(title, author, pages, read) {
