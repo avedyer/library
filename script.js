@@ -9,7 +9,6 @@ newBookSubmit.onclick = () => {
     const author = document.querySelector('#authorInput').value;
     const pages = document.querySelector('#pagesInput').value;
     const read = document.querySelector('#readInput').checked;
-    console.log(read);
     addBookToLibrary(title, author, pages, read);
 }
 
@@ -31,13 +30,22 @@ let writeID = function(){
 }
 
 function addBookToLibrary(title, author, pages, read) {
+    
+    let bookExists = false;
+
     myLibrary.forEach(function (book) {
         if (title === book.title && author === book.author) {
             alert("This book has already been added to your library.");
+            bookExists = true;
         }
     });
-    const newBook = new Book(title, author, pages, read, writeID());
-    myLibrary.push(newBook);
+
+    console.log(bookExists);
+
+    if(!bookExists){
+        const newBook = new Book(title, author, pages, read, writeID());
+        myLibrary.push(newBook);
+    }
 }
 
 let displayLibrary = () => {    
