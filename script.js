@@ -40,8 +40,6 @@ function addBookToLibrary(title, author, pages, read) {
         }
     });
 
-    console.log(bookExists);
-
     if(!bookExists){
         const newBook = new Book(title, author, pages, read, writeID());
         myLibrary.push(newBook);
@@ -52,6 +50,16 @@ let displayLibrary = () => {
 
     bookshelf.innerHTML = '';
     myLibrary.forEach(function (book) {
+        let newDeleteElement = document.createElement('button');
+        newDeleteElement.setAttribute('type', 'button');
+        newDeleteElement.classList.add('delete');
+        newDeleteElement.innerHTML = "x";
+
+        newDeleteElement.onclick = () => {
+            let index = myLibrary.indexOf(book);
+            myLibrary.splice(index, 1);
+            displayLibrary();
+        }
 
         let newTitleElement = document.createElement('h2');
         newTitleElement.classList.add('title');
@@ -69,6 +77,7 @@ let displayLibrary = () => {
         newReadElement.classList.add('read');
         newReadElement.innerHTML = book.read ? "read" : "unread";
 
+
         newReadElement.onclick = () => {
             book.read = !book.read;
             displayLibrary();
@@ -76,7 +85,7 @@ let displayLibrary = () => {
 
         let newBookElement = document.createElement('div')
         newBookElement.classList.add('book')
-        newBookElement.append(newTitleElement, newAuthorElement, newPagesElement, newReadElement);
+        newBookElement.append(newDeleteElement, newTitleElement, newAuthorElement, newPagesElement, newReadElement);
 
         bookshelf.appendChild(newBookElement);
     });
