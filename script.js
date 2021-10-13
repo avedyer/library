@@ -25,6 +25,8 @@ function addBookToLibrary(title, author, pages, read) {
 let bookshelf = document.getElementById('bookshelf')
 
 let displayLibrary = () => {    
+
+    bookshelf.innerHTML = '';
     myLibrary.forEach(function (book) {
 
         let newTitleElement = document.createElement('h2');
@@ -42,6 +44,11 @@ let displayLibrary = () => {
         let newReadElement = document.createElement('h3');
         newReadElement.classList.add('read');
         newReadElement.innerHTML = book.read ? "read" : "unread";
+
+        newReadElement.onclick = () => {
+            book.read = !book.read;
+            displayLibrary();
+        }
 
         let newBookElement = document.createElement('div')
         newBookElement.classList.add('book')
