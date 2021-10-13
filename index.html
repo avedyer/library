@@ -14,16 +14,16 @@
 
             </div>
         </main>
-        <form class="newBook">
-            <label  for="title">Title</label><br>
-                <input type="text" id="title"><br>
-            <label  for="author">Author</label><br>
-                <input type="text" id="author"><br>
-            <label  for="pages">Author</label><br>
-                <input type="number" id="pages" min="0" step="1"><br>
-            <label for="read">Read?</label>
-                <input type="checkbox"><br>
-            <input type="submit" value="Submit">
+        <form class="newBook" onsubmit="return false">
+            <label  for="titleInput">Title</label><br>
+                <input type="text" id="titleInput"><br>
+            <label  for="authorInput">Author</label><br>
+                <input type="text" id="authorInput"><br>
+            <label  for="pagesInput">Author</label><br>
+                <input type="number" id="pagesInput" min="0" step="1"><br>
+            <label for="readInput">Read?</label>
+                <input type="checkbox" id="readInput"><br>
+            <input type="submit" value="Submit" class="newBookSubmit">
         </form>
     </body>
     <script src="script.js"></script>

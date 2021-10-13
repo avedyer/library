@@ -1,5 +1,18 @@
 let myLibrary = [];
 
+const bookshelf = document.getElementById('bookshelf');
+const newBookForm = document.querySelector('.newBook');
+const newBookSubmit = document.querySelector('.newBookSubmit')
+
+newBookSubmit.onclick = () => {
+    const title = document.querySelector('#titleInput').value;
+    const author = document.querySelector('#authorInput').value;
+    const pages = document.querySelector('#pagesInput').value;
+    const read = document.querySelector('#readInput').checked;
+    console.log(read);
+    addBookToLibrary(title, author, pages, read);
+}
+
 function Book (title, author, pages, read, id) {
     this.title = title
     this.author = author
@@ -10,19 +23,22 @@ function Book (title, author, pages, read, id) {
 
 let writeID = function(){
     let id = Math.floor(Math.random() * (2**32))
-    for (const book in myLibrary) {
+    myLibrary.forEach(function (book) {
         if (book.id === id)
         writeID();
-    }
+    });
     return id;
 }
 
 function addBookToLibrary(title, author, pages, read) {
+    myLibrary.forEach(function (book) {
+        if (title === book.title && author === book.author) {
+            alert("This book has already been added to your library.");
+        }
+    });
     const newBook = new Book(title, author, pages, read, writeID());
     myLibrary.push(newBook);
 }
-
-let bookshelf = document.getElementById('bookshelf')
 
 let displayLibrary = () => {    
 
