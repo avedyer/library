@@ -1,15 +1,47 @@
+const bookshelf = document.getElementById('bookshelf');
+const newBookForm = document.querySelector('.newBookForm');
+const newBookSubmit = document.querySelector('.newBookSubmit')
+const newBookButton = document.querySelector('.newBookButton')
+const newBookCancel = document.querySelector('.newBookCancel')
+
 let myLibrary = [];
 
-const bookshelf = document.getElementById('bookshelf');
-const newBookForm = document.querySelector('.newBook');
-const newBookSubmit = document.querySelector('.newBookSubmit')
+if(!localStorage.getItem('myLibrary')){
+    console.log("building library");
+    populateStorage();
+}
+
+else {
+    console.log("fetching library");
+    myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+}
+
+function populateStorage () {
+    console.log("populating");
+    console.log(myLibrary);
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+}
+
+newBookButton.onclick = () => {
+    newBookForm.style.display = "block";
+}
+
+newBookCancel.onclick = () => {
+    newBookForm.style.display = "none";
+}
 
 newBookSubmit.onclick = () => {
+    let librarySize = myLibrary.length;
+
     const title = document.querySelector('#titleInput').value;
     const author = document.querySelector('#authorInput').value;
     const pages = document.querySelector('#pagesInput').value;
     const read = document.querySelector('#readInput').checked;
+
     addBookToLibrary(title, author, pages, read);
+     if (librarySize < myLibrary.length) {
+        newBookForm.style.display = "none";
+     }
 }
 
 function Book (title, author, pages, read, id) {
@@ -44,6 +76,9 @@ function addBookToLibrary(title, author, pages, read) {
         const newBook = new Book(title, author, pages, read, writeID());
         myLibrary.push(newBook);
     }
+
+    populateStorage();
+    displayLibrary();
 }
 
 let displayLibrary = () => {    
@@ -91,7 +126,4 @@ let displayLibrary = () => {
     });
 }
 
-const book1 = new Book("Goldfinch", "Mary Murray", 586, false, writeID());
-const book2 = new Book("After Dawn", "John Maxcock", 194, true, writeID());
-
-myLibrary.push(book1, book2);
+displayLibrary();
