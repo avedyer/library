@@ -1,3 +1,132 @@
-.newBookForm {
+body{
+    margin: 0px;
+    min-height: 100vh;
+    text-align: center;
+    max-width: 100vw;
+    background-color: white;
+}
+
+header {
+    padding: 10px;
+    height: 140px;
+    width: 100vw;
+    background-color: floralwhite;
+    border-bottom: 2px solid silver;
+    box-shadow: 0px 0px 10px silver;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+.title {
+    font-size: 20px;
+}
+
+.author {
+    font-size: 18px;
+}
+
+.pages {
+    font-size: 14px;
+}
+
+.read {
+    font-size: 14px;
+}
+
+.formBox {
     display: none;
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: hsla(0, 0%, 0%, 0.3);
+}
+
+.book {
+    width: 220px;
+    height: 300px;
+    background-color: ghostwhite;
+    margin: 20px;
+    border: 2px solid silver;
+    position: relative;
+}
+
+#bookshelf {
+    max-width: 100vw;
+    min-width: 100vw;
+    margin: 20px;
+    overflow: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.delete {
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 0;
+    border: none;
+}
+
+.delete:hover {
+    border: 2px solid darksalmon;
+    background-color: lightcoral;
+}
+
+.newBookForm {
+    width: 260px;
+    height: auto;
+    margin: 20% auto;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background-color: white;
+}
+
+input {
+    margin-bottom: 15px;
+}
+
+label {
+    margin-top: 15px;
+}
+
+input[type="submit"] {
+    margin-top: 20px;
+    
+}
+
+@media (max-width: 500px){
+    .book {
+        width: 160px;
+        height: 260px;
+        background-color: beige;
+        margin: 10px;
+    }
+
+    .title {
+        font-size: 18px;
+    }
+    
+    .author {
+        font-size: 16px;
+    }
+    
+    .pages {
+        font-size: 14px;
+    }
+    
+    .read {
+        font-size: 14px;
+    }
 }

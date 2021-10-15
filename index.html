@@ -6,27 +6,31 @@
         <link rel="stylesheet" href="./styles.css">
     </head>
     <body>
-        <h1>
-            Your Books
-        </h1>
-        <main>
+        <header>
+            <h1>
+                your books
+            </h1>
             <button type="button" class='newBookButton'>New Book</button>
+        </header>
+        <main>
             <div id="bookshelf">
 
             </div>
         </main>
-        <form class="newBookForm" onsubmit="return false">
-            <label  for="titleInput">Title</label><br>
-                <input type="text" id="titleInput"><br>
-            <label  for="authorInput">Author</label><br>
-                <input type="text" id="authorInput"><br>
-            <label  for="pagesInput">Author</label><br>
-                <input type="number" id="pagesInput" min="0" step="1"><br>
-            <label for="readInput">Read?</label>
-                <input type="checkbox" id="readInput"><br>
-            <input type="submit" value="Submit" class="newBookSubmit">
-            <input type="submit" value="Cancel" class="newBookCancel">
-        </form>
+        <div class=formBox>
+            <form class="newBookForm" onsubmit="return false">
+                <label  for="titleInput">Title</label><br>
+                    <input type="text" id="titleInput"><br>
+                <label  for="authorInput">Author</label><br>
+                    <input type="text" id="authorInput"><br>
+                <label  for="pagesInput">Pages</label><br>
+                    <input type="number" id="pagesInput" min="0" step="1"><br>
+                <label for="readInput">Read?</label>
+                    <input type="checkbox" id="readInput"><br>
+                <input type="submit" value="Submit" class="newBookSubmit">
+                <input type="submit" value="Cancel" class="newBookCancel">
+            </form>
+        </div>
     </body>
     <script src="script.js"></script>
 </html>

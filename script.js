@@ -1,5 +1,5 @@
 const bookshelf = document.getElementById('bookshelf');
-const newBookForm = document.querySelector('.newBookForm');
+const formBox = document.querySelector('.formBox');
 const newBookSubmit = document.querySelector('.newBookSubmit')
 const newBookButton = document.querySelector('.newBookButton')
 const newBookCancel = document.querySelector('.newBookCancel')
@@ -23,11 +23,11 @@ function populateStorage () {
 }
 
 newBookButton.onclick = () => {
-    newBookForm.style.display = "block";
+    formBox.style.display = "block";
 }
 
 newBookCancel.onclick = () => {
-    newBookForm.style.display = "none";
+    formBox.style.display = "none";
 }
 
 newBookSubmit.onclick = () => {
@@ -40,7 +40,7 @@ newBookSubmit.onclick = () => {
 
     addBookToLibrary(title, author, pages, read);
      if (librarySize < myLibrary.length) {
-        newBookForm.style.display = "none";
+        formBox.style.display = "none";
      }
 }
 
@@ -93,6 +93,7 @@ let displayLibrary = () => {
         newDeleteElement.onclick = () => {
             let index = myLibrary.indexOf(book);
             myLibrary.splice(index, 1);
+            populateStorage();
             displayLibrary();
         }
 
@@ -106,7 +107,8 @@ let displayLibrary = () => {
 
         let newPagesElement = document.createElement('h3');
         newPagesElement.classList.add('pages');
-        newPagesElement.innerHTML = book.pages;
+        let pages = book.pages + ' pages'
+        newPagesElement.innerHTML = pages;
 
         let newReadElement = document.createElement('h3');
         newReadElement.classList.add('read');
@@ -120,7 +122,7 @@ let displayLibrary = () => {
 
         let newBookElement = document.createElement('div')
         newBookElement.classList.add('book')
-        newBookElement.append(newDeleteElement, newTitleElement, newAuthorElement, newPagesElement, newReadElement);
+        newBookElement.append(newTitleElement, newAuthorElement, newPagesElement, newReadElement, newDeleteElement);
 
         bookshelf.appendChild(newBookElement);
     });
