@@ -1,8 +1,9 @@
 const bookshelf = document.getElementById('bookshelf');
 const formBox = document.querySelector('.formBox');
-const newBookSubmit = document.querySelector('.newBookSubmit')
-const newBookButton = document.querySelector('.newBookButton')
-const newBookCancel = document.querySelector('.newBookCancel')
+const newBookSubmit = document.querySelector('.newBookSubmit');
+const newBookButton = document.querySelector('.newBookButton');
+const newBookCancel = document.querySelector('.newBookCancel');
+const pagesInput = document.getElementById('pagesInput');
 
 let myLibrary = [];
 
@@ -30,13 +31,27 @@ newBookCancel.onclick = () => {
     formBox.style.display = "none";
 }
 
+pagesInput.addEventListener("change", () => {
+    if(pagesInput.value.match(/^[0-9]+$/) === null) {
+        alert('Please enter a numerical page value');
+        pagesInput.value = '';
+    }
+
+    console.log('change');
+});
+
 newBookSubmit.onclick = () => {
     let librarySize = myLibrary.length;
 
     const title = document.querySelector('#titleInput').value;
     const author = document.querySelector('#authorInput').value;
-    const pages = document.querySelector('#pagesInput').value;
+    const pages = pagesInput.value;
     const read = document.querySelector('#readInput').checked;
+
+    if(!title || !author || !pages) {
+        alert ('Please fill out each field.');
+        return;
+    }
 
     addBookToLibrary(title, author, pages, read);
      if (librarySize < myLibrary.length) {
@@ -88,7 +103,7 @@ let displayLibrary = () => {
         let newDeleteElement = document.createElement('button');
         newDeleteElement.setAttribute('type', 'button');
         newDeleteElement.classList.add('delete');
-        newDeleteElement.innerHTML = "x";
+        newDeleteElement.innerHTML = "Remove this title";
 
         newDeleteElement.onclick = () => {
             let index = myLibrary.indexOf(book);
@@ -110,9 +125,17 @@ let displayLibrary = () => {
         let pages = book.pages + ' pages'
         newPagesElement.innerHTML = pages;
 
+        let newSpanElement = document.createElement('span');
+        newSpanElement.classList.add('unreadSpan');
+        newSpanElement.innerHTML = 'un';
+
         let newReadElement = document.createElement('h3');
         newReadElement.classList.add('read');
-        newReadElement.innerHTML = book.read ? "read" : "unread";
+        newReadElement.innerHTML = 'read';
+
+        if (!book.read) {
+            newReadElement.prepend(newSpanElement);
+        }
 
 
         newReadElement.onclick = () => {
@@ -120,8 +143,8 @@ let displayLibrary = () => {
             displayLibrary();
         }
 
-        let newBookElement = document.createElement('div')
-        newBookElement.classList.add('book')
+        let newBookElement = document.createElement('div');
+        newBookElement.classList.add('book');
         newBookElement.append(newTitleElement, newAuthorElement, newPagesElement, newReadElement, newDeleteElement);
 
         bookshelf.appendChild(newBookElement);
