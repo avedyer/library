@@ -3,16 +3,16 @@ body{
     min-height: 100vh;
     text-align: center;
     max-width: 100vw;
-    background-color: white;
+    overflow-x: hidden;
+    background-color: hsl(283, 0%, 95%);
 }
 
 header {
     padding: 10px;
     height: 140px;
     width: 100vw;
-    background-color: floralwhite;
-    border-bottom: 2px solid silver;
-    box-shadow: 0px 0px 10px silver;
+    background: hsl(283, 39%, 91%);
+    border-bottom: 8px groove hsl(283, 39%, 95%);
 }
 
 h1 {
@@ -21,19 +21,42 @@ h1 {
 
 .title {
     font-size: 20px;
+    margin-bottom: 1em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 .author {
-    font-size: 18px;
+    font-size: 16px;
+    margin-bottom: 1.5em;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 30%;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 .pages {
     font-size: 14px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    text-overflow: ellipsis;
 }
 
 .read {
-    font-size: 14px;
+    font-size: 16px;
     color: hsl(0, 0%, 30%);
+    position: absolute;
+    bottom: 12%;
+    left: 0;
+    right: 0;
 }
 
 .unreadSpan {
@@ -51,6 +74,7 @@ h1 {
     margin: 20px;
     border: 2px solid silver;
     position: relative;
+    padding: 5px;
 }
 
 #bookshelf {
@@ -99,7 +123,7 @@ h1 {
     position: fixed;
     left: 0;
     right: 0;
-    top: -5%;
+    top: -10%;
     padding: 40px;
     font-size: 16px;
     background-color: white;
@@ -150,7 +174,6 @@ input[type="submit"] {
     .book {
         width: 160px;
         height: 260px;
-        background-color: beige;
         margin: 10px;
     }
 
@@ -168,5 +191,9 @@ input[type="submit"] {
     
     .read {
         font-size: 14px;
+    }
+
+    .newBookForm {
+        top: 10%;
     }
 }

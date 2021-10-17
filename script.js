@@ -4,22 +4,19 @@ const newBookSubmit = document.querySelector('.newBookSubmit');
 const newBookButton = document.querySelector('.newBookButton');
 const newBookCancel = document.querySelector('.newBookCancel');
 const pagesInput = document.getElementById('pagesInput');
+const deleteLibraryButton = document.querySelector('.deleteLibraryButton');
 
 let myLibrary = [];
 
 if(!localStorage.getItem('myLibrary')){
-    console.log("building library");
     populateStorage();
 }
 
 else {
-    console.log("fetching library");
     myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
 }
 
 function populateStorage () {
-    console.log("populating");
-    console.log(myLibrary);
     localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
 }
 
@@ -31,15 +28,6 @@ newBookCancel.onclick = () => {
     formBox.style.display = "none";
 }
 
-pagesInput.addEventListener("change", () => {
-    if(pagesInput.value.match(/^[0-9]+$/) === null) {
-        alert('Please enter a numerical page value');
-        pagesInput.value = '';
-    }
-
-    console.log('change');
-});
-
 newBookSubmit.onclick = () => {
     let librarySize = myLibrary.length;
 
@@ -48,10 +36,17 @@ newBookSubmit.onclick = () => {
     const pages = pagesInput.value;
     const read = document.querySelector('#readInput').checked;
 
-    if(!title || !author || !pages) {
+    if(!title || !author) {
         alert ('Please fill out each field.');
         return;
     }
+
+    if(pagesInput.value.match(/^[0-9]+$/) === null) {
+        alert('Please enter a numerical page value');
+        pagesInput.value = '';
+        return;
+    }
+
 
     addBookToLibrary(title, author, pages, read);
      if (librarySize < myLibrary.length) {
@@ -149,6 +144,14 @@ let displayLibrary = () => {
 
         bookshelf.appendChild(newBookElement);
     });
+}
+
+deleteLibraryButton.onclick = () => {
+    if (confirm('Delete your library? This cannot be undone.')) {
+        myLibrary = [];
+        populateStorage();
+        displayLibrary();
+    }
 }
 
 displayLibrary();
